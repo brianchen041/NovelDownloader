@@ -37,11 +37,12 @@
             this.tbURL = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnSticky = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGetChapter
             // 
-            this.btnGetChapter.Location = new System.Drawing.Point(499, 310);
+            this.btnGetChapter.Location = new System.Drawing.Point(499, 315);
             this.btnGetChapter.Name = "btnGetChapter";
             this.btnGetChapter.Size = new System.Drawing.Size(75, 23);
             this.btnGetChapter.TabIndex = 0;
@@ -65,10 +66,11 @@
             this.clbChapter.Name = "clbChapter";
             this.clbChapter.Size = new System.Drawing.Size(333, 293);
             this.clbChapter.TabIndex = 2;
+            this.clbChapter.SelectedIndexChanged += new System.EventHandler(this.clbChapter_SelectedIndexChanged);
             // 
             // btnSetectAllChapter
             // 
-            this.btnSetectAllChapter.Location = new System.Drawing.Point(241, 310);
+            this.btnSetectAllChapter.Location = new System.Drawing.Point(241, 315);
             this.btnSetectAllChapter.Name = "btnSetectAllChapter";
             this.btnSetectAllChapter.Size = new System.Drawing.Size(75, 23);
             this.btnSetectAllChapter.TabIndex = 3;
@@ -78,7 +80,7 @@
             // 
             // btnDownloadSelected
             // 
-            this.btnDownloadSelected.Location = new System.Drawing.Point(108, 311);
+            this.btnDownloadSelected.Location = new System.Drawing.Point(108, 315);
             this.btnDownloadSelected.Name = "btnDownloadSelected";
             this.btnDownloadSelected.Size = new System.Drawing.Size(118, 23);
             this.btnDownloadSelected.TabIndex = 4;
@@ -88,7 +90,7 @@
             // 
             // btnClearSelectedChapter
             // 
-            this.btnClearSelectedChapter.Location = new System.Drawing.Point(322, 311);
+            this.btnClearSelectedChapter.Location = new System.Drawing.Point(322, 315);
             this.btnClearSelectedChapter.Name = "btnClearSelectedChapter";
             this.btnClearSelectedChapter.Size = new System.Drawing.Size(75, 23);
             this.btnClearSelectedChapter.TabIndex = 5;
@@ -121,11 +123,22 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Log";
             // 
+            // btnSticky
+            // 
+            this.btnSticky.Location = new System.Drawing.Point(403, 315);
+            this.btnSticky.Name = "btnSticky";
+            this.btnSticky.Size = new System.Drawing.Size(75, 23);
+            this.btnSticky.TabIndex = 9;
+            this.btnSticky.Text = "Sticky";
+            this.btnSticky.UseVisualStyleBackColor = true;
+            this.btnSticky.Click += new System.EventHandler(this.btnSticky_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 349);
+            this.Controls.Add(this.btnSticky);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbURL);
@@ -153,6 +166,7 @@
         private System.Windows.Forms.TextBox tbURL;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSticky;
     }
 }
 

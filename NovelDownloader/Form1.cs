@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
@@ -130,7 +124,11 @@ namespace NovelDownloader
             int index;
 
             content = webStr;
-            index = content.IndexOf("style4") + 64;            
+            //++ 2018/2/23
+            //index = content.IndexOf("style4") + 64;            
+            index = content.IndexOf("返回书页");
+            index = content.IndexOf("&nbsp;", index);
+            //--
             content = content.Substring(index);
             index = content.IndexOf("</div>");
             content = content.Substring(0, index);
@@ -192,7 +190,43 @@ namespace NovelDownloader
             }
         }
 
-   
+        private void clbChapter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(clbChapter.SelectedItems.Count > 0)
+            {
+                tbLog.Text = clbChapter.SelectedValue + "";
+            }
+        }
+
+        private void btnSticky_Click(object sender, EventArgs e)
+        {
+            int start = 0;
+            int end = clbChapter.Items.Count - 1;
+
+            for (int i = 0; i < clbChapter.Items.Count; i++)
+            {
+                if (clbChapter.GetItemChecked(i) == true)
+                {
+                    start = i;
+                    break;
+                }
+            }
+
+            for (int i = clbChapter.Items.Count - 1; i >= 0; i--)
+            {
+                if (clbChapter.GetItemChecked(i) == true)
+                {
+                    end = i;
+                    break;
+                }
+            }
+
+            for (int i = start; i < end; i++)
+            {
+                clbChapter.SetItemChecked(i, true);
+            }
+        }
+
         /*
         新飄天
 
