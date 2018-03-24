@@ -25,7 +25,7 @@ namespace NovelDownloader
             if (subURL != null)
                 subURL = null;
             clbChapter.Items.Clear();
-            if (tbURL.Text.IndexOf("http://www.piaotian.com/html/") != -1)
+            if (tbURL.Text.IndexOf("https://www.piaotian.com/html/") != -1)
             {
                 chapterURL = tbURL.Text;
                 buildBookChapter(chapterURL);
@@ -48,7 +48,7 @@ namespace NovelDownloader
             bookName = SimpTradChinese.ToTraditional(bookName);
 
             content = webStr;
-            index = content.IndexOf("到雅虎收藏") + 15;
+            index = content.IndexOf("<ul>");
             if (index == -1)
                 return;
             content = content.Substring(index);
@@ -136,6 +136,10 @@ namespace NovelDownloader
             content = content.Replace("&nbsp&nbsp", "\r\n");
             content = content.Replace("&nbsp", "");
             content = content.Replace("<br />", "");
+            //++ 2018/3/25
+            //remove unknow string "bpbpbpbp"
+            content = content.Replace("bpbpbpbp", "");
+            //--
             return content;
         }
 
