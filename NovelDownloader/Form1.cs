@@ -143,6 +143,10 @@ namespace NovelDownloader
             //++ 2018/7/4
             content = content.Replace("手机用户请访问http://m.piaotian.net", "");
             //--
+            //++ 2021/1/26
+            content = content.Replace("水印广告测试", "");
+            content = content.Replace("&emsp&emsp", "");
+            //--
             return content;
         }
 
