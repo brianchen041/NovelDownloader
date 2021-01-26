@@ -11,25 +11,25 @@ namespace NovelDownloader
     {
         public Form1()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         string chapterURL;
         string bookName;
         string folder = "";
         ArrayList subURL;
-        ArrayList checkedList; 
+        ArrayList checkedList;
 
         private void btnGetChapter_Click(object sender, EventArgs e)
         {
             if (subURL != null)
                 subURL = null;
             clbChapter.Items.Clear();
-            if (tbURL.Text.IndexOf("https://www.piaotian.com/html/") != -1)
+            if (tbURL.Text.IndexOf("https://www.ptwxz.com/html/") != -1)
             {
                 chapterURL = tbURL.Text;
                 buildBookChapter(chapterURL);
-                tbLog.Text = "來源：" + "飄天 (www.piaotian.com)" + "\r\n";
+                tbLog.Text = "來源：" + "飄天 (www.ptwxz.com)" + "\r\n";
                 tbLog.Text += "書名：" + bookName + "\r\n";
             }
 
@@ -140,6 +140,9 @@ namespace NovelDownloader
             //remove unknow string "bpbpbpbp"
             content = content.Replace("bpbpbpbp", "");
             //--
+            //++ 2018/7/4
+            content = content.Replace("手机用户请访问http://m.piaotian.net", "");
+            //--
             return content;
         }
 
@@ -147,7 +150,7 @@ namespace NovelDownloader
         {
             fileName = folder + fileName;
             FileStream myFile = File.Open(fileName, FileMode.Append, FileAccess.Write, FileShare.None);
-            StreamWriter myWriter = new StreamWriter(myFile, Encoding.GetEncoding("big5"));          
+            StreamWriter myWriter = new StreamWriter(myFile, Encoding.GetEncoding("big5"));
             myWriter.Write(text);
             myWriter.WriteLine("");
             myWriter.Dispose();
@@ -156,7 +159,7 @@ namespace NovelDownloader
 
         private void btnSetectAllChapter_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < clbChapter.Items.Count; i++) 
+            for (int i = 0; i < clbChapter.Items.Count; i++)
             {
                 clbChapter.SetItemChecked(i, true);
             }
@@ -170,15 +173,15 @@ namespace NovelDownloader
 
             for (int i = 0; i < clbChapter.Items.Count; i++)
             {
-                if (clbChapter.GetItemChecked(i) == true) 
+                if (clbChapter.GetItemChecked(i) == true)
                 {
                     checkedList.Add(i);
                 }
             }
 
             string webContent;
-            for (int i = 0; i < checkedList.Count; i++) 
-            {                
+            for (int i = 0; i < checkedList.Count; i++)
+            {
                 webContent = getContent(chapterURL + subURL[(int)checkedList[i]]);
                 webContent = SimpTradChinese.ToTraditional(webContent);
                 writeText(bookName + ".txt", webContent);
@@ -196,7 +199,7 @@ namespace NovelDownloader
 
         private void clbChapter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(clbChapter.SelectedItems.Count > 0)
+            if (clbChapter.SelectedItems.Count > 0)
             {
                 tbLog.Text = clbChapter.SelectedValue + "";
             }
